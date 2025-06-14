@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Details - BookNest</title>
+  <link rel="stylesheet" href="book.css">
+  <style>
+    .book-detail-container {
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+    .book-detail-container img {
+      max-width: 200px;
+      height: auto;
+      border-radius: 8px;
+    }
+    .rating-stars span {
+      cursor: pointer;
+      font-size: 24px;
+    }
+    .rating-stars span.selected {
+      color: gold;
+    }
+  </style>
+</head>
+<body>
+  <div class="book-detail-container">
+    <button onclick="goBack()">← Back</button>
+    <h1 id="bookTitle">Loading...</h1>
+    <h3 id="bookAuthor"></h3>
+    <p><strong>Published:</strong> <span id="bookDate"></span></p>
+    <img id="bookImage" src="" alt="Book Cover">
+    <p id="bookDescription"></p>
+
+    <div class="rating-section">
+      <h4>Rate this book:</h4>
+      <div class="rating-stars" id="ratingStars"></div>
+    </div>
+  </div>
+
+  <script>
+    // Navigate back to previous page
+    function goBack() {
+      window.history.back();
+    }
+
+    // Load selected book from localStorage
+    const book = JSON.parse(localStorage.getItem("selectedBook"));
+
+    if (book) {
+      document.getElementById("bookTitle").textContent = book.title;
+      document.getElementById("bookAuthor").textContent = "by " + book.author;
+      document.getElementById("bookDate").textContent = book.publishedDate;
+      document.getElementById("bookImage").src = book.img;
+      document.getElementById("bookDescription").textContent = book.description;
+
+      const ratingStars = document.getElementById("ratingStars");
+      for (let i = 1; i <= 5; i++) {
+        const star = document.createElement("span");
+        star.textContent = "★";
+        star.onclick = () => {
+          localStorage.setItem("rating_" + book.title, i);
+          renderRating(i);
+        };
+        ratingStars.appendChild(star);
+      }
+
+      const savedRating = localStorage.getItem("rating_" + book.title);
+      if (savedRating) renderRating(Number(savedRating));
+    }
+
+    // Highlight selected rating
+    function renderRating(value) {
+      const stars = document.querySelectorAll("#ratingStars span");
+      stars.forEach((star, index) => {
+        star.classList.toggle("selected", index < value);
+      });
+    }
+  </script>
+</body>
+</html>

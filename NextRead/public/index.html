@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Next Book</title>
+  <link rel="stylesheet" href="book.css">
+  <script src="app.js" defer></script>
+  <a href="books.html"></a>
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="logo">Next Book</div>
+      <input type="text" id="searchInput" class="search-box" placeholder="🔍 Search Books...">
+      <button id="searchBtn">Search</button>
+      <nav class="nav-menu">
+        <ul>
+          <li class="nav-item">
+            <a href="#" class="nav-link active" data-tab="home">Home Feed</a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" data-tab="mybooks">My Books</a>
+          </li>
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header class="header">
+        <div class="user-profile">
+          <span class="username">Femma</span>
+          <div class="avatar">👤</div>
+        </div>
+      </header>
+
+      <div class="content-wrapper">
+        <div class="left-column">
+          <section class="section" id="searchResults">
+            <h2 class="section-title">Book Recomandations</h2>
+            <div id="bookContainer" class="book-results"></div>
+          </section>
+
+          <section class="section" id="myBooksSection" style="display: none;">
+            <h2 class="section-title">My Books</h2>
+            <div id="myBooksContainer" class="book-results"></div>
+          </section>
+        </div>
+
+       
+              
+              <div class="book-actions">
+                
+               
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
